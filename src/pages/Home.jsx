@@ -7,7 +7,7 @@ export default function Home() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch("https://react-ecommerce-qxa5.onrender.com/api/products")
       .then((res) => res.json())
       .then((data) => {
         const featured = data.slice(0, 4).map((item) => ({

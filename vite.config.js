@@ -6,13 +6,14 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',         // auto updates SW in the background
-      devOptions: { enabled: false },     // SW off during `npm run dev`
-
+      registerType: 'autoUpdate',
+      devOptions: {
+        enabled: false
+      },
       manifest: {
         name: 'Pitstop',
         short_name: 'Pitstop',
-        description: 'React E‑Commerce PWA',
+        description: 'React E-Commerce PWA',
         start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',
@@ -20,13 +21,10 @@ export default defineConfig({
         icons: [
           { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
-          // optional but recommended for Android’s install UI
           { src: '/icon-512-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
-
-      // Defaults are fine for the module; we can add runtime caching later
-      workbox: {},
-    }),
-  ],
+      workbox: {}
+    })
+  ]
 });
