@@ -21,9 +21,21 @@ export default function Footer() {
               Quick Links
             </h6>
             <ul className="list-unstyled" style={{ lineHeight: "1.8", color: "var(--text)" }}>
-              <li>Products</li>
-              <li>About Us</li>
-              <li>Contact</li>
+              <li className="nav-item">
+              <Link to="/products" className="nav-link">
+                products
+              </Link>
+            </li>
+              <li className="nav-item">
+                <Link to="/about" className="nav-link">
+                  About Us
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/contact" className="nav-link">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -33,9 +45,9 @@ export default function Footer() {
               Connect
             </h6>
             <ul className="list-unstyled" style={{ lineHeight: "1.8", color: "var(--text)" }}>
-              <li>Email: pitstop@example.com</li>
-              <li>Instagram</li>
-              <li>Facebook</li>
+              <li>Email: pitstop@gmail.com</li>
+              <li>Instagram: @pistopshop_ph</li>
+              <li>Facebook: Pistop Shop</li>
             </ul>
           </div>
 
