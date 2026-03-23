@@ -243,3 +243,16 @@ footer.footer {
   color: var(--text);
   border-top: 1px solid var(--border);
 }
+
+/* Footer Links */
+.footer-link {
+  color: var(--text) !important;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: 0.2s ease;
+}
+
+.footer-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
