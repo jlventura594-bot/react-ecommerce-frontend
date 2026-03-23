@@ -22,7 +22,7 @@ export function CartProvider({ children }) {
           price: product.price,
           image: product.image,
           qty: 1,
-          product, // keep the original for any extra fields
+          product, // original for any extra fields
         },
       ];
     });
