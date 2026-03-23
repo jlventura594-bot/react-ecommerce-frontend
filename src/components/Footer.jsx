@@ -21,17 +21,17 @@ export default function Footer() {
               Quick Links
             </h6>
             <ul className="list-unstyled" style={{ lineHeight: "1.8", color: "var(--text)" }}>
-              <li className="nav-item">
-              <Link to="/products" className="nav-link">
-                products
-              </Link>
-            </li>
-              <li className="nav-item">
+              <li className="link-item">
+                <Link to="/products" className="nav-link">
+                  Products
+                </Link>
+              </li>
+              <li className="link-item">
                 <Link to="/about" className="nav-link">
                   About Us
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="link-item">
                 <Link to="/contact" className="nav-link">
                   Contact
                 </Link>

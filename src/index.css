@@ -243,3 +243,30 @@ footer.footer {
   color: var(--text);
   border-top: 1px solid var(--border);
 }
+
+/* Global section spacing */
+.section {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+/* Section titles */
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+  color: var(--text);
+}
+
+/* Section subtitle (optional) */
+.section-subtitle {
+  color: var(--text);
+  opacity: 0.8;
+  margin-bottom: 1.2rem;
+}
+
+/* Section divider */
+.section-divider {
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}

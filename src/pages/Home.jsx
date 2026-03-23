@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import ProductCard from '../components/ProductCard.jsx';
-import Hero from '../components/Hero.jsx';   // ⭐ REQUIRED IMPORT
-import banner from '../assets/banner.jpg';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import ProductCard from "../components/ProductCard.jsx";
+import Hero from "../components/Hero.jsx"; // ⭐ REQUIRED IMPORT
+import banner from "../assets/banner.jpg";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -36,9 +36,9 @@ export default function Home() {
       <Hero image={banner} />
 
       {/* FEATURED */}
-      <div className="container pb-4">
+      <div className="section container">
         <div className="d-flex justify-content-between align-items-center mb-3">
-          <h4 className="mb-0">Featured Products</h4>
+          <h4 className="section-title">Featured Products</h4>
           <Link to="/products" className="btn btn-outline-primary btn-sm">
             View All Products
           </Link>
@@ -53,12 +53,10 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ⭐ RECENTLY VIEWED */}
+      {/* RECENTLY VIEWED */}
       {recent.length > 0 && (
-        <div className="container pb-4 mt-4">
-          <div className="d-flex justify-content-between align-items-center mb-3">
-            <h4 className="mb-0">Recently Viewed</h4>
-          </div>
+        <div className="section container">
+          <h4 className="section-title">Recently Viewed</h4>
 
           <div className="row g-3">
             {recent.map((p) => (

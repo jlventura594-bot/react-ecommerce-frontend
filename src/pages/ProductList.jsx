@@ -76,7 +76,7 @@ const ProductList = () => {
         </aside>
 
         {/* Products */}
-        <section className="col-12 col-md-9">
+        <section className="col-12 col-md-9 section">
 
           {/* Search + Sorting UI */}
           <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
