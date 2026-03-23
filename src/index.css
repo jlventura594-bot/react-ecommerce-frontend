@@ -65,6 +65,15 @@ button:hover {
   border-color: var(--border) !important;
 }
 
+.product-card {
+  background-color: var(--card-bg) !important;
+  color: var(--text) !important;
+}
+
+.product-card .card-body {
+  background-color: var(--card-bg) !important;
+}
+
 /* List items */
 .list-group-item {
   background-color: var(--card-bg) !important;

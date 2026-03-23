@@ -24,24 +24,25 @@ export default function SingleProduct() {
         if (cancelled) return;
 
         const normalized = {
-          ...data,
+          id: data.id,
+          name: data.name,
+          price: Number(data.price),
           oldPrice:
             data.oldPrice !== undefined
               ? data.oldPrice
               : Number(data.price) * 1.25,
+          rating: Number(data.rating ?? 0),
+          discount: data.discount ?? 0,
+          image: data.image,
+          category: data.category,
         };
 
         // ⭐ Save Recently Viewed
         try {
           let recent = JSON.parse(localStorage.getItem("recentProducts")) || [];
 
-          // remove duplicates
           recent = recent.filter((p) => p.id !== normalized.id);
-
-          // add latest viewed at the TOP
           recent.unshift(normalized);
-
-          // limit to 4 items max
           recent = recent.slice(0, 4);
 
           localStorage.setItem("recentProducts", JSON.stringify(recent));
@@ -144,7 +145,10 @@ export default function SingleProduct() {
           )}
 
           <div className="d-flex gap-2">
-            <button className="btn btn-primary" onClick={() => addToCart(product)}>
+            <button
+              className="btn btn-primary"
+              onClick={() => addToCart(product)}
+            >
               <i className="fas fa-cart-plus me-2" />
               Add to Cart
             </button>
