@@ -3,64 +3,112 @@ import { useCart } from "../context/CartContext.jsx";
 import { useTheme } from "../context/ThemeContext.jsx";
 
 export default function Navbar() {
-  const { totalItems } = useCart();
+  const { cart } = useCart();
+  const totalQty = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <nav className="navbar navbar-expand-lg bg-light border-bottom">
+    <nav
+      className="navbar navbar-expand-lg shadow-sm"
+      style={{ backgroundColor: "var(--nav-bg)" }}
+    >
       <div className="container">
-        <Link className="navbar-brand" to="/">
-          PitStop
+
+        {/* Brand */}
+        <Link className="navbar-brand fw-bold" to="/" style={{ color: "var(--text)" }}>
+          Pitstop
         </Link>
 
+        {/* Mobile Hamburger */}
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#mainNav"
-          aria-controls="mainNav"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon" />
+          <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="mainNav">
+        {/* Menu */}
+        <div className="collapse navbar-collapse" id="mainNavbar">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            
             <li className="nav-item">
-              <NavLink className="nav-link" to="/">
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
                 Home
               </NavLink>
             </li>
+
             <li className="nav-item">
-              <NavLink className="nav-link" to="/products">
+              <NavLink
+                to="/products"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
                 Products
               </NavLink>
             </li>
+
             <li className="nav-item">
-              <NavLink className="nav-link" to="/about">
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
                 About
               </NavLink>
             </li>
+
             <li className="nav-item">
-              <NavLink className="nav-link" to="/contact">
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+              >
                 Contact
               </NavLink>
             </li>
+
           </ul>
 
-          <Link
-            to="/cart"
-            className="btn btn-outline-primary position-relative"
-          >
-            <i className="fa-solid fa-cart-shopping"></i>
-            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {totalItems}
-            </span>
-          </Link>
-          <button className="btn btn-outline-light ms-3" onClick={toggleTheme}>
-            {theme === "light" ? "🌙 Dark Mode" : "☀ Light Mode"}
-          </button>
+          {/* Right Side Buttons */}
+          <div className="d-flex align-items-center gap-3">
+
+            {/* Cart */}
+            <Link
+              to="/cart"
+              className="btn btn-outline-primary position-relative"
+            >
+              <i className="fas fa-shopping-cart"></i>
+              {totalQty > 0 && (
+                <span className="badge bg-danger text-white position-absolute top-0 start-100 translate-middle px-2 py-1 rounded-circle">
+                  {totalQty}
+                </span>
+              )}
+            </Link>
+
+            {/* Dark Mode Toggle */}
+            <button
+              className="btn btn-outline-secondary"
+              onClick={toggleTheme}
+            >
+              {theme === "light" ? "🌙" : "☀"}
+            </button>
+
+          </div>
         </div>
       </div>
     </nav>

@@ -120,3 +120,12 @@ input::placeholder {
   font-weight: bold;
   border-radius: 4px;
 }
+
+.nav-link {
+  color: var(--text) !important;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
