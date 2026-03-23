@@ -189,16 +189,17 @@ input::placeholder {
   }
 }
 
-/* Light mode header */
+/* LIGHT MODE */
 .header-top {
-  background-color: #b40000;
+  background-color: #b40000;  /* Ferrari Red */
   color: white;
   padding: 6px 0;
+  font-size: 0.9rem;
 }
 
-/* Dark mode header */
+/* DARK MODE */
 [data-theme="dark"] .header-top {
-  background-color: #5a0000; /* darker muted red */
+  background-color: #5a0000; /* darker muted wine red */
   color: #e5e5e5;
 }
 
@@ -214,14 +215,22 @@ input::placeholder {
 
 html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #root {
-  display: flex;
   min-height: 100%;
+  display: flex;
   flex-direction: column;
 }
 
 main {
   flex: 1;
+}
+
+footer.footer {
+  background-color: var(--nav-bg);
+  color: var(--text);
+  border-top: 1px solid var(--border);
 }

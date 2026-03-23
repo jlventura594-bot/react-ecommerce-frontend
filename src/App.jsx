@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-
-import Header from "./components/Header.jsx";
 import Navbar from "./components/Navbar.jsx";
+import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 
 import Home from "./pages/Home.jsx";
@@ -18,7 +17,7 @@ export default function App() {
       <Header />
       <Navbar />
 
-      <main className="container py-4">
+      <main className="flex-grow-1">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductList />} />
