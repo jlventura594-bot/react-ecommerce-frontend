@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard.jsx';
+import Hero from '../components/Hero.jsx';   // ⭐ REQUIRED IMPORT
 import banner from '../assets/banner.jpg';
 
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [recent, setRecent] = useState([]);
 
+  // Load featured products
   useEffect(() => {
     fetch("https://react-ecommerce-qxa5.onrender.com/api/products")
       .then((res) => res.json())
@@ -23,7 +25,7 @@ export default function Home() {
       .catch((err) => console.error("Failed to load products:", err));
   }, []);
 
-  // Load Recently Viewed from localStorage
+  // Load recently viewed
   useEffect(() => {
     const viewed = JSON.parse(localStorage.getItem("recentProducts")) || [];
     setRecent(viewed);
@@ -31,17 +33,9 @@ export default function Home() {
 
   return (
     <>
-      {/* Store Banner */}
-      <div className="container py-4">
-        <img
-          src={banner}
-          alt="Store banner"
-          className="img-fluid rounded shadow-sm w-100"
-          style={{ maxHeight: 320, objectFit: "cover" }}
-        />
-      </div>
+      <Hero image={banner} />
 
-      {/* Featured */}
+      {/* FEATURED */}
       <div className="container pb-4">
         <div className="d-flex justify-content-between align-items-center mb-3">
           <h4 className="mb-0">Featured Products</h4>
@@ -59,7 +53,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ⭐ Recently Viewed */}
+      {/* ⭐ RECENTLY VIEWED */}
       {recent.length > 0 && (
         <div className="container pb-4 mt-4">
           <div className="d-flex justify-content-between align-items-center mb-3">

@@ -134,3 +134,39 @@ input::placeholder {
   font-weight: 600;
   text-decoration: underline;
 }
+
+/* Hero Section */
+.hero-wrapper {
+  border-radius: 12px;
+}
+
+.hero-img {
+  filter: brightness(0.90);
+  transition: 0.4s ease;
+}
+
+[data-theme="dark"] .hero-img {
+  filter: brightness(0.6);
+}
+
+.hero-wrapper:hover .hero-img {
+  filter: brightness(1);
+  transform: scale(1.02);
+}
+
+.hero-overlay h1 {
+  font-size: 2.6rem;
+}
+
+.hero-overlay p {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .hero-overlay h1 {
+    font-size: 1.8rem;
+  }
+  .hero-overlay p {
+    font-size: 1rem;
+  }
+}
