@@ -222,6 +222,62 @@ input::placeholder {
   transform: scale(1.05);
 }
 
+/* CART */
+.cart-page {
+  color: var(--text);
+}
+
+.cart-table {
+  --bs-table-bg: var(--card-bg);
+  --bs-table-color: var(--text);
+  --bs-table-border-color: var(--border);
+  --bs-table-striped-bg: var(--card-bg);
+  --bs-table-striped-color: var(--text);
+  --bs-table-hover-bg: rgba(255, 255, 255, 0.04);
+  --bs-table-hover-color: var(--text);
+
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cart-table th,
+.cart-table td {
+  background-color: var(--card-bg) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+  vertical-align: middle;
+}
+
+.cart-table thead th,
+.cart-table tfoot td {
+  background-color: var(--nav-bg) !important;
+}
+
+.cart-qty-value {
+  background-color: var(--card-bg) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  cursor: default;
+}
+
+.cart-qty-value:disabled {
+  opacity: 1 !important;
+}
+
+.cart-qty-btn {
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+.cart-qty-btn:hover {
+  background-color: var(--button-bg) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
 html, body {
   height: 100%;
   margin: 0;

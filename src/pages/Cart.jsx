@@ -8,18 +8,18 @@ export default function Cart() {
 
   if (cart.length === 0) {
     return (
-      <div className="container py-5">
+      <div className="container py-5 cart-page">
         <h3>Your cart is empty.</h3>
       </div>
     );
   }
 
   return (
-    <div className="container py-4">
+    <div className="container py-4 cart-page">
       <h3 className="mb-4">Shopping Cart</h3>
 
       <div className="table-responsive">
-        <table className="table align-middle">
+        <table className="table align-middle cart-table">
           <thead>
             <tr>
               <th>Product</th>
@@ -51,16 +51,18 @@ export default function Cart() {
                 <td>
                   <div className="btn-group" role="group">
                     <button
-                      className="btn btn-outline-secondary"
+                      className="btn btn-outline-secondary cart-qty-btn"
                       onClick={() => decrement(item.id)}
                     >
                       −
                     </button>
-                    <button className="btn btn-light" disabled>
+
+                    <button className="btn cart-qty-value" disabled>
                       {item.qty}
                     </button>
+
                     <button
-                      className="btn btn-outline-secondary"
+                      className="btn btn-outline-secondary cart-qty-btn"
                       onClick={() => increment(item.id)}
                     >
                       +
