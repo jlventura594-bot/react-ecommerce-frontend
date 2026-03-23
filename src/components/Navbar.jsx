@@ -5,7 +5,6 @@ import { useTheme } from "../context/ThemeContext.jsx";
 export default function Navbar() {
   const { cart } = useCart();
   const totalQty = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
-  <img src="/logo.png" alt="Logo" className="img-fluid" style={{ height: "40px" }} />
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -17,15 +16,13 @@ export default function Navbar() {
       }}
     >
       <div className="container">
-
         {/* LOGO + BRAND */}
         <Link
           className="navbar-brand d-flex align-items-center gap-2 fw-bold"
           to="/"
           style={{ color: "var(--text)" }}
         >
-          /logo.png
-          Pitstop
+          /logo.png Pitstop
         </Link>
 
         {/* Mobile Toggle */}
@@ -41,38 +38,46 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Collapsing Nav */}
+        {/* Menu */}
         <div className="collapse navbar-collapse" id="mainNavbar">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
             <li className="nav-item">
-              <NavLink to="/" end className="nav-link">Home</NavLink>
+              <NavLink to="/" end className="nav-link">
+                Home
+              </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink to="/products" className="nav-link">Products</NavLink>
+              <NavLink to="/products" className="nav-link">
+                Products
+              </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink to="/about" className="nav-link">About</NavLink>
+              <NavLink to="/about" className="nav-link">
+                About
+              </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink to="/contact" className="nav-link">Contact</NavLink>
+              <NavLink to="/contact" className="nav-link">
+                Contact
+              </NavLink>
             </li>
-
           </ul>
 
-          {/* Right Buttons */}
+          {/* Right Icons */}
           <div className="d-flex align-items-center gap-3">
-
-            {/* Dark Mode Toggle */}
+            {/* Dark Mode */}
             <button className="btn btn-outline-secondary" onClick={toggleTheme}>
               {theme === "light" ? "🌙" : "☀"}
             </button>
 
             {/* Cart */}
-            <Link to="/cart" className="btn btn-outline-primary position-relative">
+            <Link
+              to="/cart"
+              className="btn btn-outline-primary position-relative"
+            >
               <i className="fas fa-shopping-cart"></i>
               {totalQty > 0 && (
                 <span className="badge bg-danger text-white position-absolute top-0 start-100 translate-middle px-2 py-1 rounded-circle">
@@ -80,9 +85,7 @@ export default function Navbar() {
                 </span>
               )}
             </Link>
-
           </div>
-
         </div>
       </div>
     </nav>
