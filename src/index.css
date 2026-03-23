@@ -326,3 +326,59 @@ footer.footer {
   border-top: 1px solid var(--border);
   margin: 2.5rem 0;
 }
+
+/* Add-to-cart button animation */
+.add-cart-btn {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.add-cart-btn:active {
+  transform: scale(0.97);
+}
+
+.add-cart-btn.is-added {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+  color: #fff !important;
+  animation: addButtonBump 0.28s ease;
+}
+
+@keyframes addButtonBump {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(0.96);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Cart badge pop */
+.cart-badge-pop {
+  animation: cartBadgePop 0.35s ease;
+}
+
+@keyframes cartBadgePop {
+  0% {
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .add-cart-btn,
+  .cart-badge-pop {
+    animation: none !important;
+    transition: none !important;
+  }
+}

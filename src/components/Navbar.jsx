@@ -3,7 +3,7 @@ import { useCart } from "../context/CartContext.jsx";
 import { useTheme } from "../context/ThemeContext.jsx";
 
 export default function Navbar() {
-  const { cart } = useCart();
+  const { cart, cartPulseKey } = useCart();
   const totalQty = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
   const { theme, toggleTheme } = useTheme();
 
@@ -16,17 +16,20 @@ export default function Navbar() {
       }}
     >
       <div className="container">
-        {/* LOGO + BRAND */}
         <Link
           className="navbar-brand d-flex align-items-center gap-2 fw-bold"
           to="/"
           style={{ color: "var(--text)" }}
         >
-          <img src="logo.png" alt="Pitstop Logo" className="img-fluid" style={{ height: "40px" }} />
+          <img
+            src="logo.png"
+            alt="Pitstop Logo"
+            className="img-fluid"
+            style={{ height: "40px" }}
+          />
           Pitstop
         </Link>
 
-        {/* Mobile Toggle */}
         <button
           className="navbar-toggler"
           type="button"
@@ -39,7 +42,6 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Menu */}
         <div className="collapse navbar-collapse" id="mainNavbar">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
@@ -67,21 +69,22 @@ export default function Navbar() {
             </li>
           </ul>
 
-          {/* Right Icons */}
           <div className="d-flex align-items-center gap-3">
-            {/* Dark Mode */}
             <button className="btn btn-outline-secondary" onClick={toggleTheme}>
               {theme === "light" ? "🌙" : "☀"}
             </button>
 
-            {/* Cart */}
             <Link
               to="/cart"
               className="btn btn-outline-primary position-relative"
             >
               <i className="fas fa-shopping-cart"></i>
+
               {totalQty > 0 && (
-                <span className="badge bg-danger text-white position-absolute top-0 start-100 translate-middle px-2 py-1 rounded-circle">
+                <span
+                  key={cartPulseKey}
+                  className="badge bg-danger text-white position-absolute top-0 start-100 translate-middle px-2 py-1 rounded-circle cart-badge-pop"
+                >
                   {totalQty}
                 </span>
               )}

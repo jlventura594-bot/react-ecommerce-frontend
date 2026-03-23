@@ -1,10 +1,28 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext.jsx";
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
+  const [justAdded, setJustAdded] = useState(false);
+  const timeoutRef = useRef(null);
+
   const name = product?.name ?? product?.title ?? "Product";
   const rating = Math.max(0, Math.min(5, Number(product?.rating ?? 0)));
+
+  useEffect(() => {
+    return () => clearTimeout(timeoutRef.current);
+  }, []);
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    setJustAdded(true);
+
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setJustAdded(false);
+    }, 700);
+  };
 
   return (
     <div
@@ -16,9 +34,7 @@ export default function ProductCard({ product }) {
         borderRadius: "10px",
       }}
     >
-      {/* Image Wrapper */}
       <div className="position-relative overflow-hidden rounded-top">
-        {/* Discount Badge */}
         {product?.discount ? (
           <span
             className="badge position-absolute top-0 start-0 m-2"
@@ -47,9 +63,7 @@ export default function ProductCard({ product }) {
         </Link>
       </div>
 
-      {/* Card Body */}
       <div className="card-body d-flex flex-column">
-        {/* Title */}
         <h6 className="card-title text-truncate fw-semibold mb-1">
           <Link
             to={`/product/${product.id}`}
@@ -60,7 +74,6 @@ export default function ProductCard({ product }) {
           </Link>
         </h6>
 
-        {/* Rating */}
         <div className="mb-2">
           {[...Array(5)].map((_, i) => (
             <i
@@ -71,7 +84,6 @@ export default function ProductCard({ product }) {
           ))}
         </div>
 
-        {/* Prices */}
         <div className="mb-3">
           {product?.oldPrice ? (
             <span className="text-muted text-decoration-line-through me-2">
@@ -84,18 +96,24 @@ export default function ProductCard({ product }) {
           </span>
         </div>
 
-        {/* Buttons */}
         <div className="d-flex gap-2 mt-auto">
           <button
-            className="btn btn-primary flex-fill"
-            onClick={() => addToCart(product)}
+            className={`btn btn-primary flex-fill add-cart-btn ${
+              justAdded ? "is-added" : ""
+            }`}
+            onClick={handleAddToCart}
             style={{ fontWeight: "600" }}
           >
-            <i className="fas fa-cart-plus me-2"></i>
-            Add
+            <i
+              className={`fas ${justAdded ? "fa-check" : "fa-cart-plus"} me-2`}
+            ></i>
+            {justAdded ? "Added!" : "Add"}
           </button>
 
-          <Link to={`/product/${product.id}`} className="btn btn-outline-secondary">
+          <Link
+            to={`/product/${product.id}`}
+            className="btn btn-outline-secondary"
+          >
             View
           </Link>
         </div>
