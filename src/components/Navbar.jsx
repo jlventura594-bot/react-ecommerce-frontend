@@ -11,16 +11,25 @@ export default function Navbar() {
   return (
     <nav
       className="navbar navbar-expand-lg shadow-sm"
-      style={{ backgroundColor: "var(--nav-bg)" }}
+      style={{
+        backgroundColor: "var(--nav-bg)",
+        borderBottom: "1px solid var(--border)"
+      }}
     >
       <div className="container">
 
-        {/* Brand */}
-        <Link className="navbar-brand fw-bold" to="/" style={{ color: "var(--text)" }}>
+        {/* Brand + Logo */}
+        <Link
+          className="navbar-brand d-flex align-items-center gap-2 fw-bold"
+          to="/"
+          style={{ color: "var(--text)", fontSize: "1.4rem" }}
+        >
+          {/* Replace /logo.png with your actual file */}
+          /logo.png
           Pitstop
         </Link>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile Toggle */}
         <button
           className="navbar-toggler"
           type="button"
@@ -33,17 +42,19 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Menu */}
         <div className="collapse navbar-collapse" id="mainNavbar">
+
+          {/* Navigation Links */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            
+
             <li className="nav-item">
               <NavLink
                 to="/"
                 end
                 className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
+                  isActive ? "nav-link active fw-semibold" : "nav-link"
                 }
+                style={{ color: "var(--text)" }}
               >
                 Home
               </NavLink>
@@ -53,8 +64,9 @@ export default function Navbar() {
               <NavLink
                 to="/products"
                 className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
+                  isActive ? "nav-link active fw-semibold" : "nav-link"
                 }
+                style={{ color: "var(--text)" }}
               >
                 Products
               </NavLink>
@@ -64,8 +76,9 @@ export default function Navbar() {
               <NavLink
                 to="/about"
                 className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
+                  isActive ? "nav-link active fw-semibold" : "nav-link"
                 }
+                style={{ color: "var(--text)" }}
               >
                 About
               </NavLink>
@@ -75,8 +88,9 @@ export default function Navbar() {
               <NavLink
                 to="/contact"
                 className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
+                  isActive ? "nav-link active fw-semibold" : "nav-link"
                 }
+                style={{ color: "var(--text)" }}
               >
                 Contact
               </NavLink>
@@ -87,26 +101,32 @@ export default function Navbar() {
           {/* Right Side Buttons */}
           <div className="d-flex align-items-center gap-3">
 
-            {/* Cart */}
+            {/* Theme Toggle */}
+            <button
+              className="btn btn-outline-secondary d-flex align-items-center"
+              onClick={toggleTheme}
+              title="Toggle Theme"
+            >
+              {theme === "light" ? "🌙" : "☀"}
+            </button>
+
+            {/* Cart Button */}
             <Link
               to="/cart"
-              className="btn btn-outline-primary position-relative"
+              className="btn btn-outline-primary position-relative d-flex align-items-center"
+              title="View Cart"
             >
               <i className="fas fa-shopping-cart"></i>
+
               {totalQty > 0 && (
-                <span className="badge bg-danger text-white position-absolute top-0 start-100 translate-middle px-2 py-1 rounded-circle">
+                <span
+                  className="badge bg-danger text-white position-absolute top-0 start-100 translate-middle px-2 py-1 rounded-circle"
+                  style={{ fontSize: "0.7rem" }}
+                >
                   {totalQty}
                 </span>
               )}
             </Link>
-
-            {/* Dark Mode Toggle */}
-            <button
-              className="btn btn-outline-secondary"
-              onClick={toggleTheme}
-            >
-              {theme === "light" ? "🌙" : "☀"}
-            </button>
 
           </div>
         </div>

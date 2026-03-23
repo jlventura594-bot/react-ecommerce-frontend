@@ -123,9 +123,14 @@ input::placeholder {
 
 .nav-link {
   color: var(--text) !important;
+  transition: 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--link-hover) !important;
 }
 
 .nav-link.active {
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: underline;
 }
