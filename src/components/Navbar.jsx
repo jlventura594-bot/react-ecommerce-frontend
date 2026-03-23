@@ -5,7 +5,6 @@ import { useTheme } from "../context/ThemeContext.jsx";
 export default function Navbar() {
   const { cart } = useCart();
   const totalQty = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
-
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -17,13 +16,15 @@ export default function Navbar() {
       }}
     >
       <div className="container">
-        {/* Brand + Logo */}
+
+        {/* LOGO + BRAND */}
         <Link
           className="navbar-brand d-flex align-items-center gap-2 fw-bold"
           to="/"
-          style={{ color: "var(--text)", fontSize: "1.4rem" }}
+          style={{ color: "var(--text)" }}
         >
-          /logo.png Pitstop
+          /logo.png
+          Pitstop
         </Link>
 
         {/* Mobile Toggle */}
@@ -39,87 +40,57 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
+        {/* Menu */}
         <div className="collapse navbar-collapse" id="mainNavbar">
-          {/* Navigation Links */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
             <li className="nav-item">
-              <NavLink
-                to="/"
-                end
-                className={({ isActive }) =>
-                  isActive ? "nav-link active fw-semibold" : "nav-link"
-                }
-                style={{ color: "var(--text)" }}
-              >
+              <NavLink to="/" end className="nav-link">
                 Home
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink
-                to="/products"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active fw-semibold" : "nav-link"
-                }
-                style={{ color: "var(--text)" }}
-              >
+              <NavLink to="/products" className="nav-link">
                 Products
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active fw-semibold" : "nav-link"
-                }
-                style={{ color: "var(--text)" }}
-              >
+              <NavLink to="/about" className="nav-link">
                 About
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink
-                to="/contact"
-                className={({ isActive }) =>
-                  isActive ? "nav-link active fw-semibold" : "nav-link"
-                }
-                style={{ color: "var(--text)" }}
-              >
+              <NavLink to="/contact" className="nav-link">
                 Contact
               </NavLink>
             </li>
+
           </ul>
 
-          {/* Right Side Buttons */}
+          {/* Right Icons */}
           <div className="d-flex align-items-center gap-3">
-            {/* Theme Toggle */}
-            <button
-              className="btn btn-outline-secondary d-flex align-items-center"
-              onClick={toggleTheme}
-              title="Toggle Theme"
-            >
+
+            {/* Dark Mode */}
+            <button className="btn btn-outline-secondary" onClick={toggleTheme}>
               {theme === "light" ? "🌙" : "☀"}
             </button>
 
-            {/* Cart Button */}
+            {/* Cart */}
             <Link
               to="/cart"
-              className="btn btn-outline-primary position-relative d-flex align-items-center"
-              title="View Cart"
+              className="btn btn-outline-primary position-relative"
             >
               <i className="fas fa-shopping-cart"></i>
-
               {totalQty > 0 && (
-                <span
-                  className="badge bg-danger text-white position-absolute top-0 start-100 translate-middle px-2 py-1 rounded-circle"
-                  style={{ fontSize: "0.7rem" }}
-                >
+                <span className="badge bg-danger text-white position-absolute top-0 start-100 translate-middle px-2 py-1 rounded-circle">
                   {totalQty}
                 </span>
               )}
             </Link>
+
           </div>
         </div>
       </div>
