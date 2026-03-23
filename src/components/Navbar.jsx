@@ -22,7 +22,7 @@ export default function Navbar() {
           to="/"
           style={{ color: "var(--text)" }}
         >
-          <img src="logo.png" alt="Pitstop Logo" className="img-fluid" />
+          <img src="logo.png" alt="Pitstop Logo" className="img-fluid" style={{ height: "40px" }} />
           Pitstop
         </Link>
 
