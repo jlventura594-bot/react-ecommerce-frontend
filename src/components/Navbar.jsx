@@ -13,20 +13,17 @@ export default function Navbar() {
       className="navbar navbar-expand-lg shadow-sm"
       style={{
         backgroundColor: "var(--nav-bg)",
-        borderBottom: "1px solid var(--border)"
+        borderBottom: "1px solid var(--border)",
       }}
     >
       <div className="container">
-
         {/* Brand + Logo */}
         <Link
           className="navbar-brand d-flex align-items-center gap-2 fw-bold"
           to="/"
           style={{ color: "var(--text)", fontSize: "1.4rem" }}
         >
-          {/* Replace /logo.png with your actual file */}
-          /logo.png
-          Pitstop
+          /logo.png Pitstop
         </Link>
 
         {/* Mobile Toggle */}
@@ -43,10 +40,8 @@ export default function Navbar() {
         </button>
 
         <div className="collapse navbar-collapse" id="mainNavbar">
-
           {/* Navigation Links */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
             <li className="nav-item">
               <NavLink
                 to="/"
@@ -95,12 +90,10 @@ export default function Navbar() {
                 Contact
               </NavLink>
             </li>
-
           </ul>
 
           {/* Right Side Buttons */}
           <div className="d-flex align-items-center gap-3">
-
             {/* Theme Toggle */}
             <button
               className="btn btn-outline-secondary d-flex align-items-center"
@@ -127,7 +120,6 @@ export default function Navbar() {
                 </span>
               )}
             </Link>
-
           </div>
         </div>
       </div>

@@ -96,7 +96,7 @@ input::placeholder {
   position: relative;
 }
 
-.product-img{
+.product-img {
   height: 200px;
   width: 200px;
   object-fit: cover;
@@ -141,7 +141,7 @@ input::placeholder {
 }
 
 .hero-img {
-  filter: brightness(0.90);
+  filter: brightness(0.9);
   transition: 0.4s ease;
 }
 
@@ -160,6 +160,14 @@ input::placeholder {
 
 .hero-overlay p {
   font-size: 1.2rem;
+}
+
+.hero-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {
