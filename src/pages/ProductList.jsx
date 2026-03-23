@@ -2,10 +2,12 @@ import { useEffect, useMemo, useState } from "react";
 import ProductCard from "../components/ProductCard.jsx";
 import Sidebar from "../components/Sidebar.jsx";
 
-export default function ProductList() {
+const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState("All"); // category filter
+  const [search, setSearch] = useState(""); // search text
+  const [sortBy, setSortBy] = useState(""); // sorting option
 
   useEffect(() => {
     fetch("https://react-ecommerce-qxa5.onrender.com/api/products")
@@ -28,9 +30,34 @@ export default function ProductList() {
   }, []);
 
   const visible = useMemo(() => {
-    if (category === "All") return products;
-    return products.filter((p) => p.category === category);
-  }, [products, category]);
+    let filtered = category === "All"
+      ? products
+      : products.filter(
+          (p) =>
+            (p.category ?? "")
+              .trim()
+              .toLowerCase() === category.trim().toLowerCase()
+        );
+
+    if (search.trim() !== "") {
+      filtered = filtered.filter((p) =>
+        p.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    // Sorting
+    if (sortBy === "price-asc") {
+      filtered = [...filtered].sort((a, b) => a.price - b.price);
+    } else if (sortBy === "price-desc") {
+      filtered = [...filtered].sort((a, b) => b.price - a.price);
+    } else if (sortBy === "name-asc") {
+      filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === "rating-desc") {
+      filtered = [...filtered].sort((a, b) => b.rating - a.rating);
+    }
+
+    return filtered;
+  }, [products, category, search, sortBy]);
 
   if (loading) {
     return (
@@ -50,17 +77,46 @@ export default function ProductList() {
 
         {/* Products */}
         <section className="col-12 col-md-9">
-          <div className="d-flex justify-content-between align-items-center">
-            <h4 className="mb-3">All Products</h4>
-            {category !== "All" && (
-              <span className="badge bg-secondary">Category: {category}</span>
-            )}
+
+          {/* Search + Sorting UI */}
+          <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
+            {/* Title (left) */}
+            <h4 className="mb-0">All Products</h4>
+
+            {/* Search Bar (center-left) */}
+            <input
+              type="text"
+              className="form-control w-100 w-md-50"
+              placeholder="Search products..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+
+            {/* Sorting Dropdown (right on desktop) */}
+            <select
+              className="form-select w-100 w-md-25"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+            >
+              <option value="">Sort by...</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A to Z</option>
+              <option value="rating-desc">Rating: High to Low</option>
+            </select>
           </div>
 
-          {visible.length === 0 && (
-            <div className="alert alert-info">No products in this category.</div>
+          {/* Category Label */}
+          {category !== "All" && (
+            <span className="badge bg-secondary mb-2">Category: {category}</span>
           )}
 
+          {/* Empty state */}
+          {visible.length === 0 && (
+            <div className="alert alert-info">No products found.</div>
+          )}
+
+          {/* Product Grid */}
           <div className="row g-3">
             {visible.map((p) => (
               <div key={p.id} className="col-12 col-sm-6 col-lg-4">
@@ -72,4 +128,6 @@ export default function ProductList() {
       </div>
     </div>
   );
-}
+};
+
+export default ProductList;

@@ -1,4 +1,3 @@
-// src/pages/SingleProduct.jsx
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useCart } from "../context/CartContext.jsx";
@@ -23,11 +22,34 @@ export default function SingleProduct() {
       })
       .then((data) => {
         if (cancelled) return;
-        setProduct({
+
+        const normalized = {
           ...data,
           oldPrice:
-            data.oldPrice !== undefined ? data.oldPrice : Number(data.price) * 1.25,
-        });
+            data.oldPrice !== undefined
+              ? data.oldPrice
+              : Number(data.price) * 1.25,
+        };
+
+        // ⭐ Save Recently Viewed
+        try {
+          let recent = JSON.parse(localStorage.getItem("recentProducts")) || [];
+
+          // remove duplicates
+          recent = recent.filter((p) => p.id !== normalized.id);
+
+          // add latest viewed at the TOP
+          recent.unshift(normalized);
+
+          // limit to 4 items max
+          recent = recent.slice(0, 4);
+
+          localStorage.setItem("recentProducts", JSON.stringify(recent));
+        } catch (err) {
+          console.error("Failed to save recently viewed:", err);
+        }
+
+        setProduct(normalized);
         setLoading(false);
       })
       .catch((err) => {
@@ -45,7 +67,7 @@ export default function SingleProduct() {
   if (loading) {
     return (
       <div className="container py-4">
-        <h5>Loading product…</h5>
+        <h6>Loading product…</h6>
       </div>
     );
   }
@@ -53,7 +75,9 @@ export default function SingleProduct() {
   if (error || !product) {
     return (
       <div className="container py-4">
-        <div className="alert alert-danger">{error || "Product not found."}</div>
+        <div className="alert alert-danger">
+          {error || "Product not found."}
+        </div>
         <Link to="/products" className="btn btn-secondary">
           Back to Products
         </Link>
@@ -79,6 +103,7 @@ export default function SingleProduct() {
                 -{product.discount}%
               </span>
             ) : null}
+
             <img
               src={product.image}
               alt={product.name ?? "Product"}
@@ -113,7 +138,8 @@ export default function SingleProduct() {
 
           {product.category && (
             <p className="text-muted mb-4">
-              Category: <span className="badge bg-secondary">{product.category}</span>
+              Category:{" "}
+              <span className="badge bg-secondary">{product.category}</span>
             </p>
           )}
 
@@ -122,6 +148,7 @@ export default function SingleProduct() {
               <i className="fas fa-cart-plus me-2" />
               Add to Cart
             </button>
+
             <Link to="/cart" className="btn btn-outline-primary">
               Go to Cart
             </Link>

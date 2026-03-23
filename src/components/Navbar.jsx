@@ -1,8 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import { useCart } from "../context/CartContext.jsx";
+import { useTheme } from "../context/ThemeContext.jsx";
 
 export default function Navbar() {
   const { totalItems } = useCart();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <nav className="navbar navbar-expand-lg bg-light border-bottom">
@@ -56,6 +58,9 @@ export default function Navbar() {
               {totalItems}
             </span>
           </Link>
+          <button className="btn btn-outline-light ms-3" onClick={toggleTheme}>
+            {theme === "light" ? "🌙 Dark Mode" : "☀ Light Mode"}
+          </button>
         </div>
       </div>
     </nav>

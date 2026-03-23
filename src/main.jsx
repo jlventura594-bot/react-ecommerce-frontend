@@ -9,12 +9,15 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import App from './App.jsx';
 import { CartProvider } from './context/CartContext.jsx';
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <CartProvider>
-        <App />
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
       </CartProvider>
     </BrowserRouter>
   </React.StrictMode>
